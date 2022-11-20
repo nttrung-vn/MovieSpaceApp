@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'movies/movie_overview_screen.dart';
 import 'movies/movie_favorite_screen.dart';
+import 'shared/user_control_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,7 +20,9 @@ class _HomeState extends State<Home> {
     const SafeArea(
       child: MoviesFavoriteScreen(),
     ),
-    Container(color: Colors.yellow),
+    const SafeArea(
+      child: UserControl(),
+    ),
   ];
 
   @override
