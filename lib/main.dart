@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'ui/movies/movies_manager.dart';
+import 'ui/movies/movie_detail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +18,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SafeArea(
-        child: Container(
-          color: Colors.blueAccent,
+        child: MovieDetailScreen(
+          MoviesManager().items[0],
         ),
       ),
     );
