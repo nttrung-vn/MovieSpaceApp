@@ -47,7 +47,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           Text(
             'Quốc gia: ${widget.movie.nation}',
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 18,
             ),
             textAlign: TextAlign.center,
           ),
@@ -55,13 +55,13 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             'Thể loại: ${widget.movie.genre}',
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 18,
             ),
           ),
           Text(
             'Năm sản xuất: ${widget.movie.year}',
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 18,
             ),
             textAlign: TextAlign.center,
           ),
@@ -71,7 +71,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           Text(
             widget.movie.description,
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 18,
             ),
             textAlign: TextAlign.justify,
             softWrap: true,
