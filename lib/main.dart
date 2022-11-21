@@ -4,6 +4,7 @@ import 'ui/movies/movie_detail_screen.dart';
 import 'ui/movies/movie_grid_tile.dart';
 import 'ui/home.dart';
 import 'ui/movies/movie_overview_screen.dart';
+import 'ui/movies/movies_manage_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       //     MoviesManager().items[0],
       //   ),
       // ),
-      home: const Home(),
+      // home: const Home(),
       // home: SafeArea(
       //   child: MovieGridTile(
       //     MoviesManager().items[0],
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
       // home: const SafeArea(
       //   child: MoviesOverviewScreen(),
       // ),
+      home: const SafeArea(
+        child: MoviesManageScreen(),
+      ),
     );
   }
 }

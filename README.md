@@ -1,16 +1,27 @@
-# mymovies
+# Movie Space
 
-A new Flutter project.
+Mobile Application Development project.
 
-## Getting Started
+## Student
 
-This project is a starting point for a Flutter application.
+ID: B1910013  
+Name: Nguyen Thanh Trung
 
-A few resources to get you started if this is your first Flutter project:
+## Setup
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Clone this project to local: git clone https://github.com/nttrung-vn/MyShopApp.git
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Firebase
+
+Authentication: Email/Password  
+Realtime Database: Rules in LOCKED MODE
+
+### Enviroment Config
+
+.env file in project root folder & add your firebase project information:  
+FIREBASE_API_KEY=Web API Key from Firebase Project  
+FIREBASE_URL=URL to Realtime Database on Firebase
+
+### Install all the missing packages in flutter project
+
+Command: flutter pub get
