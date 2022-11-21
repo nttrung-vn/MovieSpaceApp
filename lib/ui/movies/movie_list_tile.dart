@@ -14,7 +14,7 @@ class MovieListTile extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(movie.name),
-        subtitle: Text(movie.nation),
+        subtitle: Text('${movie.nation} (${movie.year})'),
         leading: CircleAvatar(
           backgroundImage: NetworkImage(movie.posterUrl),
         ),

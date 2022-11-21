@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/movies/movies_manager.dart';
-import 'ui/movies/movie_detail_screen.dart';
-import 'ui/movies/movie_grid_tile.dart';
-import 'ui/home.dart';
-import 'ui/movies/movie_overview_screen.dart';
-import 'ui/movies/movies_manage_screen.dart';
+import 'ui/screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +31,7 @@ class MyApp extends StatelessWidget {
       //   child: MoviesOverviewScreen(),
       // ),
       home: const SafeArea(
-        child: MoviesManageScreen(),
+        child: MoviesManagerScreen(),
       ),
     );
   }

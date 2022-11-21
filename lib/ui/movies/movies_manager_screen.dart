@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'movies_manager.dart';
 import 'movie_list_tile.dart';
 
-class MoviesManageScreen extends StatelessWidget {
-  const MoviesManageScreen({super.key});
+class MoviesManagerScreen extends StatelessWidget {
+  const MoviesManagerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
