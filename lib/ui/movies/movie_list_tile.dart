@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../models/movie.dart';
+import 'movies_manager.dart';
+import 'movie_detail_screen.dart';
 
 class MovieListTile extends StatelessWidget {
   final Movie movie;
@@ -27,6 +30,12 @@ class MovieListTile extends StatelessWidget {
             ],
           ),
         ),
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            MovieDetailScreen.routeName,
+            arguments: movie.id,
+          );
+        },
       ),
     );
   }
@@ -34,8 +43,18 @@ class MovieListTile extends StatelessWidget {
   Widget buildDeleteButton(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.delete),
-      onPressed: () async {
-        print('Delete a movie');
+      onPressed: () {
+        context.read<MoviesManager>().deleteMovie(movie.id!);
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(
+                '${movie.name} is deleted',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
       },
       color: Theme.of(context).errorColor,
     );

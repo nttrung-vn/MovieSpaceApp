@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'movies_manager.dart';
 import 'movie_grid_tile.dart';
+import '../../models/movie.dart';
 
 class MoviesGrid extends StatelessWidget {
   final bool showFavorites;
@@ -9,9 +11,9 @@ class MoviesGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final moviesManager = MoviesManager();
-    final movies =
-        showFavorites ? moviesManager.favoriteItems : moviesManager.items;
+    // Đọc ra danh sách các movie
+    final movies = context.select<MoviesManager, List<Movie>>((moviesManager) =>
+        showFavorites ? moviesManager.favoriteItems : moviesManager.items);
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
       itemCount: movies.length,

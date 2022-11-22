@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'ui/screens.dart';
 
 void main() {
@@ -10,29 +11,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Movies Space',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MoviesManager(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Movies Space',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const Home(),
+        routes: {
+          MoviesManagerScreen.routeName: (ctx) => const MoviesManagerScreen(),
+        },
+        onGenerateRoute: (settings) {
+          if (settings.name == MovieDetailScreen.routeName) {
+            final movieId = settings.arguments as String;
+            return MaterialPageRoute(
+              builder: (ctx) {
+                return MovieDetailScreen(
+                  ctx.read<MoviesManager>().findById(movieId),
+                );
+              },
+            );
+          }
+          return null;
+        },
       ),
-      home: const Home(),
-      routes: {
-        MoviesManagerScreen.routeName: (ctx) => const MoviesManagerScreen(),
-      },
-      onGenerateRoute: (settings) {
-        if (settings.name == MovieDetailScreen.routeName) {
-          final movieId = settings.arguments as String;
-          return MaterialPageRoute(
-            builder: (ctx) {
-              return MovieDetailScreen(
-                MoviesManager().findById(movieId),
-              );
-            },
-          );
-        }
-        return null;
-      },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'movies_manager.dart';
 import 'movie_list_tile.dart';
 
@@ -24,16 +25,18 @@ class MoviesManagerScreen extends StatelessWidget {
   }
 
   Widget buildMovieListView(MoviesManager moviesManager) {
-    return ListView.builder(
-      itemCount: moviesManager.itemCount,
-      itemBuilder: (ctx, i) => Column(
-        children: [
-          MovieListTile(
-            moviesManager.items[i],
-          ),
-        ],
-      ),
-    );
+    return Consumer<MoviesManager>(builder: (ctx, moviesManager, child) {
+      return ListView.builder(
+        itemCount: moviesManager.itemCount,
+        itemBuilder: (ctx, i) => Column(
+          children: [
+            MovieListTile(
+              moviesManager.items[i],
+            ),
+          ],
+        ),
+      );
+    });
   }
 
   Widget buildAddButton(BuildContext context) {

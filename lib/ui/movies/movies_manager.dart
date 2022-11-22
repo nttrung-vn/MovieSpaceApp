@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import '../../models/movie.dart';
 
-class MoviesManager {
+class MoviesManager with ChangeNotifier {
   final List<Movie> _items = [
     Movie(
       id: 'm1',
@@ -108,5 +109,33 @@ class MoviesManager {
 
   Movie findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
+  }
+
+  void addMovie(Movie movie) {
+    _items.add(
+      movie.copyWith(
+        id: 'movie${DateTime.now().toIso8601String()}',
+      ),
+    );
+    notifyListeners();
+  }
+
+  void updateMovie(Movie movie) {
+    final index = _items.indexWhere((item) => item.id == movie.id);
+    if (index >= 0) {
+      _items[index] = movie;
+      notifyListeners();
+    }
+  }
+
+  void toggleFavoriteStatus(Movie movie) {
+    final savedStatus = movie.isFavorite;
+    movie.isFavorite = !savedStatus;
+  }
+
+  void deleteMovie(String id) {
+    final index = _items.indexWhere((item) => item.id == id);
+    _items.removeAt(index);
+    notifyListeners();
   }
 }
