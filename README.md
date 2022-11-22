@@ -9,13 +9,10 @@ Name: Nguyen Thanh Trung
 
 ## Setup
 
-Clone this project to local: git clone https://github.com/nttrung-vn/MyShopApp.git
+### Clone this project to local
 
-### Firebase
-
-Authentication: Email/Password  
-Realtime Database: Rules in LOCKED MODE
+git clone https://github.com/nttrung-vn/MyShopApp.git
 
 ### Install all the missing packages in flutter project
 
-Command: flutter pub get
+flutter pub get
