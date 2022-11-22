@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'movies/movie_overview_screen.dart';
+import 'movies/movie_home_screen.dart';
 import 'movies/movie_favorite_screen.dart';
 import 'shared/user_control_screen.dart';
 
@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
 
   static final List<Widget> _pages = [
     const SafeArea(
-      child: MoviesOverviewScreen(),
+      child: MoviesHomeScreen(),
     ),
     const SafeArea(
       child: MoviesFavoriteScreen(),

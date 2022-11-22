@@ -3,14 +3,14 @@ import 'movies_grid.dart';
 
 enum FilterOptions { favorites, all }
 
-class MoviesOverviewScreen extends StatefulWidget {
-  const MoviesOverviewScreen({super.key});
+class MoviesHomeScreen extends StatefulWidget {
+  const MoviesHomeScreen({super.key});
 
   @override
-  State<MoviesOverviewScreen> createState() => _MoviesOverviewScreenState();
+  State<MoviesHomeScreen> createState() => _MoviesHomeScreenState();
 }
 
-class _MoviesOverviewScreenState extends State<MoviesOverviewScreen> {
+class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
   var _showOnlyFavorites = false;
 
   @override
