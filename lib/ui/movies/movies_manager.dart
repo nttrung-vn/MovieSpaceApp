@@ -105,4 +105,8 @@ class MoviesManager {
   List<Movie> get favoriteItems {
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
+
+  Movie findById(String id) {
+    return _items.firstWhere((prod) => prod.id == id);
+  }
 }

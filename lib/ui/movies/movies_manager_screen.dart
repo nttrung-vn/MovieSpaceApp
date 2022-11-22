@@ -3,6 +3,7 @@ import 'movies_manager.dart';
 import 'movie_list_tile.dart';
 
 class MoviesManagerScreen extends StatelessWidget {
+  static const routeName = '/movies-manager';
   const MoviesManagerScreen({super.key});
 
   @override

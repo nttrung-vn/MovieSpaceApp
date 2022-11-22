@@ -18,10 +18,9 @@ class MovieGridTile extends StatelessWidget {
         footer: buildGridFooterBar(context),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (ctx) => MovieDetailScreen(movie),
-              ),
+            Navigator.of(context).pushNamed(
+              MovieDetailScreen.routeName,
+              arguments: movie.id,
             );
           },
           child: Image.network(

@@ -16,23 +16,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: SafeArea(
-      //   child: MovieDetailScreen(
-      //     MoviesManager().items[0],
-      //   ),
-      // ),
-      // home: const Home(),
-      // home: SafeArea(
-      //   child: MovieGridTile(
-      //     MoviesManager().items[0],
-      //   ),
-      // ),
-      // home: const SafeArea(
-      //   child: MoviesOverviewScreen(),
-      // ),
-      home: const SafeArea(
-        child: MoviesManagerScreen(),
-      ),
+      home: const Home(),
+      routes: {
+        MoviesManagerScreen.routeName: (ctx) => const MoviesManagerScreen(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == MovieDetailScreen.routeName) {
+          final movieId = settings.arguments as String;
+          return MaterialPageRoute(
+            builder: (ctx) {
+              return MovieDetailScreen(
+                MoviesManager().findById(movieId),
+              );
+            },
+          );
+        }
+        return null;
+      },
     );
   }
 }

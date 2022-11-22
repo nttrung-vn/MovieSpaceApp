@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/movie.dart';
 
 class MovieDetailScreen extends StatefulWidget {
+  static const routeName = '/movie-detail';
   const MovieDetailScreen(
     this.movie, {
     super.key,
