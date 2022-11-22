@@ -20,7 +20,7 @@ class EditMovieScreen extends StatefulWidget {
         genre: '',
         posterUrl: '',
         watchUrl: '',
-        year: 0,
+        year: DateTime.now().year.toInt(),
       );
     } else {
       this.movie = movie;
