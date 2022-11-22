@@ -82,23 +82,29 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.play_arrow_outlined),
-        onPressed: () {
-          print('Play video');
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.play_arrow_outlined),
+      //   onPressed: () {
+      //     print('Play video');
+      //   },
+      // ),
     );
   }
-}
 
-Widget buildFavoriteIcon() {
-  return IconButton(
-    icon: const Icon(
-      Icons.favorite_border,
-    ),
-    onPressed: () {
-      print("Set is favorite.");
-    },
-  );
+  Widget buildFavoriteIcon() {
+    return ValueListenableBuilder<bool>(
+      valueListenable: widget.movie.isFavoriteListenable,
+      builder: (ctx, isFavorite, child) {
+        return IconButton(
+          icon: Icon(
+            isFavorite ? Icons.favorite : Icons.favorite_border,
+          ),
+          // color: Theme.of(context).colorScheme.secondary,
+          onPressed: () {
+            widget.movie.isFavorite = !isFavorite;
+          },
+        );
+      },
+    );
+  }
 }

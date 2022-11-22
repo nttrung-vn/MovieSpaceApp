@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class Movie {
   final String? id;
   final String name;
@@ -7,7 +9,19 @@ class Movie {
   final String posterUrl;
   final String watchUrl;
   final int year;
-  final bool isFavorite;
+  final ValueNotifier<bool> _isFavorite;
+
+  set isFavorite(bool newValue) {
+    _isFavorite.value = newValue;
+  }
+
+  bool get isFavorite {
+    return _isFavorite.value;
+  }
+
+  ValueNotifier<bool> get isFavoriteListenable {
+    return _isFavorite;
+  }
 
   Movie({
     this.id,
@@ -18,8 +32,8 @@ class Movie {
     required this.posterUrl,
     required this.watchUrl,
     required this.year,
-    this.isFavorite = false,
-  });
+    isFavorite = false,
+  }) : _isFavorite = ValueNotifier(isFavorite);
 
   Movie copyWith({
     String? id,
