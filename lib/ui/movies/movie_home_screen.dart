@@ -11,7 +11,7 @@ class MoviesHomeScreen extends StatefulWidget {
 }
 
 class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
-  var _showOnlyFavorites = false;
+  final _showOnlyFavorites = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,37 +19,19 @@ class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
       appBar: AppBar(
         title: const Text('Movie Space'),
         actions: <Widget>[
-          buildProductFilterMenu(),
+          buildSearchButton(context),
         ],
       ),
       body: MoviesGrid(_showOnlyFavorites),
     );
   }
 
-  Widget buildProductFilterMenu() {
-    return PopupMenuButton(
-      onSelected: (FilterOptions selectedValue) {
-        setState(() {
-          if (selectedValue == FilterOptions.favorites) {
-            _showOnlyFavorites = true;
-          } else {
-            _showOnlyFavorites = false;
-          }
-        });
+  Widget buildSearchButton(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.search),
+      onPressed: () {
+        print('Search');
       },
-      icon: const Icon(
-        Icons.more_vert,
-      ),
-      itemBuilder: (context) => [
-        const PopupMenuItem(
-          value: FilterOptions.favorites,
-          child: Text('Only Favorites'),
-        ),
-        const PopupMenuItem(
-          value: FilterOptions.all,
-          child: Text('Show All'),
-        )
-      ],
     );
   }
 }

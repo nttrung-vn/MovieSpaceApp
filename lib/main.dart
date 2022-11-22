@@ -38,6 +38,18 @@ class MyApp extends StatelessWidget {
               },
             );
           }
+          if (settings.name == EditMovieScreen.routeName) {
+            final productId = settings.arguments as String?;
+            return MaterialPageRoute(
+              builder: (ctx) {
+                return EditMovieScreen(
+                  productId != null
+                      ? ctx.read<MoviesManager>().findById(productId)
+                      : null,
+                );
+              },
+            );
+          }
           return null;
         },
       ),

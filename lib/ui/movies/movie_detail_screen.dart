@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/movie.dart';
+import 'package:provider/provider.dart';
+import 'movies_manager.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   static const routeName = '/movie-detail';
@@ -33,15 +35,17 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           const SizedBox(
             height: 10,
           ),
+          const Divider(),
           Text(
             widget.movie.name,
             style: const TextStyle(
               color: Colors.blueAccent,
-              fontSize: 20,
+              fontSize: 25,
             ),
             textAlign: TextAlign.center,
             softWrap: true,
           ),
+          const Divider(),
           const SizedBox(
             height: 10,
           ),
@@ -67,7 +71,11 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
           ),
           Text(
             widget.movie.description,
@@ -78,16 +86,20 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             softWrap: true,
           ),
           const SizedBox(
+            height: 10,
+          ),
+          const Divider(),
+          const SizedBox(
             height: 100,
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: const Icon(Icons.play_arrow_outlined),
-      //   onPressed: () {
-      //     print('Play video');
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.play_arrow_outlined),
+        onPressed: () {
+          print('Play video');
+        },
+      ),
     );
   }
 
@@ -101,7 +113,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           ),
           // color: Theme.of(context).colorScheme.secondary,
           onPressed: () {
-            widget.movie.isFavorite = !isFavorite;
+            ctx.read<MoviesManager>().toggleFavoriteStatus(widget.movie);
           },
         );
       },

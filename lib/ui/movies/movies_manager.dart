@@ -131,6 +131,7 @@ class MoviesManager with ChangeNotifier {
   void toggleFavoriteStatus(Movie movie) {
     final savedStatus = movie.isFavorite;
     movie.isFavorite = !savedStatus;
+    notifyListeners();
   }
 
   void deleteMovie(String id) {

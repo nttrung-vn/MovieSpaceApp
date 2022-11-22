@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'movies_manager.dart';
 import 'movie_list_tile.dart';
+import 'edit_movie_screen.dart';
 
 class MoviesManagerScreen extends StatelessWidget {
   static const routeName = '/movies-manager';
@@ -43,7 +44,9 @@ class MoviesManagerScreen extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.add),
       onPressed: () {
-        print('Go to add movie screen');
+        Navigator.of(context).pushNamed(
+          EditMovieScreen.routeName,
+        );
       },
     );
   }

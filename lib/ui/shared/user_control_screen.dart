@@ -9,6 +9,9 @@ class UserControl extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+        actions: <Widget>[
+          buildAdminButton(context),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(8),
@@ -52,6 +55,15 @@ class UserControl extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildAdminButton(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.admin_panel_settings_outlined),
+      onPressed: () {
+        print('Admin mode');
+      },
     );
   }
 }

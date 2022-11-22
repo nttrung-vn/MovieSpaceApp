@@ -11,7 +11,8 @@ class MoviesFavoriteScreen extends StatefulWidget {
 }
 
 class _MoviesFavoriteScreenState extends State<MoviesFavoriteScreen> {
-  var _showOnlyFavorites = true;
+  final _showOnlyFavorites = true;
+  // var _showOnlyFavorites = true;
 
   @override
   Widget build(BuildContext context) {
@@ -19,37 +20,47 @@ class _MoviesFavoriteScreenState extends State<MoviesFavoriteScreen> {
       appBar: AppBar(
         title: const Text('My Favorite'),
         actions: <Widget>[
-          buildProductFilterMenu(),
+          buildSearchButton(context),
+          // buildProductFilterMenu(),
         ],
       ),
       body: MoviesGrid(_showOnlyFavorites),
     );
   }
 
-  Widget buildProductFilterMenu() {
-    return PopupMenuButton(
-      onSelected: (FilterOptions selectedValue) {
-        setState(() {
-          if (selectedValue == FilterOptions.favorites) {
-            _showOnlyFavorites = true;
-          } else {
-            _showOnlyFavorites = false;
-          }
-        });
+  Widget buildSearchButton(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.search),
+      onPressed: () {
+        print('Search');
       },
-      icon: const Icon(
-        Icons.more_vert,
-      ),
-      itemBuilder: (context) => [
-        const PopupMenuItem(
-          value: FilterOptions.favorites,
-          child: Text('Only Favorites'),
-        ),
-        const PopupMenuItem(
-          value: FilterOptions.all,
-          child: Text('Show All'),
-        )
-      ],
     );
   }
+
+  // Widget buildProductFilterMenu() {
+  //   return PopupMenuButton(
+  //     onSelected: (FilterOptions selectedValue) {
+  //       setState(() {
+  //         if (selectedValue == FilterOptions.favorites) {
+  //           _showOnlyFavorites = true;
+  //         } else {
+  //           _showOnlyFavorites = false;
+  //         }
+  //       });
+  //     },
+  //     icon: const Icon(
+  //       Icons.more_vert,
+  //     ),
+  //     itemBuilder: (context) => [
+  //       const PopupMenuItem(
+  //         value: FilterOptions.favorites,
+  //         child: Text('Only Favorites'),
+  //       ),
+  //       const PopupMenuItem(
+  //         value: FilterOptions.all,
+  //         child: Text('Show All'),
+  //       )
+  //     ],
+  //   );
+  // }
 }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../models/movie.dart';
 import 'movies_manager.dart';
 import 'movie_detail_screen.dart';
+import 'edit_movie_screen.dart';
 
 class MovieListTile extends StatelessWidget {
   final Movie movie;
@@ -64,7 +65,10 @@ class MovieListTile extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.edit),
       onPressed: () {
-        print('Go to edit screen movie');
+        Navigator.of(context).pushNamed(
+          EditMovieScreen.routeName,
+          arguments: movie.id,
+        );
       },
       color: Theme.of(context).primaryColor,
     );
