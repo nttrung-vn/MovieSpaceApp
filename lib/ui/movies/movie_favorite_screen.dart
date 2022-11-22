@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'movies_grid.dart';
+import 'movie_search_result.dart';
 
 enum FilterOptions { favorites, all }
 
@@ -12,55 +13,93 @@ class MoviesFavoriteScreen extends StatefulWidget {
 
 class _MoviesFavoriteScreenState extends State<MoviesFavoriteScreen> {
   final _showOnlyFavorites = true;
-  // var _showOnlyFavorites = true;
+  final TextEditingController _searchQueryController = TextEditingController();
+  bool _isSearching = false;
+  String searchQuery = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Favorite'),
-        actions: <Widget>[
-          buildSearchButton(context),
-          // buildProductFilterMenu(),
-        ],
+        leading: _isSearching ? const BackButton() : null,
+        title: _isSearching ? _buildSearchField() : _buildTitle(context),
+        actions: _buildActions(),
       ),
-      body: MoviesGrid(_showOnlyFavorites),
+      body: _isSearching
+          ? SearchResult(searchQuery, _showOnlyFavorites)
+          : MoviesGrid(_showOnlyFavorites),
     );
   }
 
-  Widget buildSearchButton(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.search),
-      onPressed: () {
-        print('Search');
-      },
+  Widget _buildSearchField() {
+    return TextField(
+      controller: _searchQueryController,
+      autofocus: true,
+      decoration: const InputDecoration(
+        hintText: "Search movies...",
+        border: InputBorder.none,
+        hintStyle: TextStyle(color: Colors.white30),
+      ),
+      style: const TextStyle(color: Colors.white, fontSize: 16.0),
+      onChanged: (query) => updateSearchQuery(query),
     );
   }
 
-  // Widget buildProductFilterMenu() {
-  //   return PopupMenuButton(
-  //     onSelected: (FilterOptions selectedValue) {
-  //       setState(() {
-  //         if (selectedValue == FilterOptions.favorites) {
-  //           _showOnlyFavorites = true;
-  //         } else {
-  //           _showOnlyFavorites = false;
-  //         }
-  //       });
-  //     },
-  //     icon: const Icon(
-  //       Icons.more_vert,
-  //     ),
-  //     itemBuilder: (context) => [
-  //       const PopupMenuItem(
-  //         value: FilterOptions.favorites,
-  //         child: Text('Only Favorites'),
-  //       ),
-  //       const PopupMenuItem(
-  //         value: FilterOptions.all,
-  //         child: Text('Show All'),
-  //       )
-  //     ],
-  //   );
-  // }
+  Widget _buildTitle(context) {
+    return const Text('Movie Space');
+  }
+
+  List<Widget> _buildActions() {
+    if (_isSearching) {
+      return <Widget>[
+        IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: () {
+            if (_searchQueryController.text.isEmpty) {
+              Navigator.pop(context);
+              return;
+            }
+            _clearSearchQuery();
+          },
+        ),
+      ];
+    }
+
+    return <Widget>[
+      IconButton(
+        icon: const Icon(Icons.search),
+        onPressed: _startSearch,
+      ),
+    ];
+  }
+
+  void _startSearch() {
+    ModalRoute.of(context)!
+        .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
+
+    setState(() {
+      _isSearching = true;
+    });
+  }
+
+  void updateSearchQuery(String newQuery) {
+    setState(() {
+      searchQuery = newQuery;
+    });
+  }
+
+  void _stopSearching() {
+    _clearSearchQuery();
+
+    setState(() {
+      _isSearching = false;
+    });
+  }
+
+  void _clearSearchQuery() {
+    setState(() {
+      _searchQueryController.clear();
+      updateSearchQuery("");
+    });
+  }
 }

@@ -107,6 +107,15 @@ class MoviesManager with ChangeNotifier {
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
 
+  List<Movie> findByString(String searchQuery, bool isFavorite) {
+    return _items
+        .where((prodItem) =>
+            prodItem.name.toLowerCase().contains(searchQuery.toLowerCase()))
+        .toList()
+        .where((prodItem) => prodItem.isFavorite == isFavorite)
+        .toList();
+  }
+
   Movie findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
