@@ -36,7 +36,7 @@ class _MoviesFavoriteScreenState extends State<MoviesFavoriteScreen> {
       controller: _searchQueryController,
       autofocus: true,
       decoration: const InputDecoration(
-        hintText: "Search movies...",
+        hintText: "Search favorite movies...",
         border: InputBorder.none,
         hintStyle: TextStyle(color: Colors.white30),
       ),

@@ -13,8 +13,12 @@ class SearchResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Đọc ra danh sách các movie
-    final movies = context.select<MoviesManager, List<Movie>>((moviesManager) =>
-        moviesManager.findByString(_searchQuery, _showOnlyFavorites));
+    final movies = _showOnlyFavorites
+        ? context.select<MoviesManager, List<Movie>>((moviesManager) =>
+            moviesManager.findFavoriteByString(
+                _searchQuery, _showOnlyFavorites))
+        : context.select<MoviesManager, List<Movie>>(
+            (moviesManager) => moviesManager.findByString(_searchQuery));
     if (movies.isEmpty) {
       return const Center(
         child: Text('No Results Found'),
