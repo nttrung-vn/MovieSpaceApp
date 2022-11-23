@@ -46,7 +46,7 @@ class _MoviesFavoriteScreenState extends State<MoviesFavoriteScreen> {
   }
 
   Widget _buildTitle(context) {
-    return const Text('Movie Space');
+    return const Text('My favorite');
   }
 
   List<Widget> _buildActions() {
